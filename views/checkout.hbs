@@ -1,0 +1,44 @@
+{{#if book}}
+<div class="row justify-content-md-center">
+  <div class="col-lg-6 col-md-8">
+    <div class="text-center mt-40">
+      <h1>
+        Checkout — Stripe Press
+      </h1>
+      <h5 class="text-secondary">
+        {{book.title}}
+      </h5>
+      <hr class="mt-40">
+      <div class="mt-20 text-info">
+        Total due: $<span class="amount" data-amount="{{amount}}"></span>
+      </div>
+    </div>
+    <div class="card box-shadow mt-40 mb-5">
+      <div class="card-body">
+        <form id="payment-form" name="payment-form" data-item="{{book.id}}" data-publishable-key="{{publishableKey}}">
+          <div>
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="you@email.com" required>
+          </div>
+          <div id="payment-element" class="mt-20">
+            <div class="text-center text-secondary" id="payment-element-loading">Loading payment form…</div>
+          </div>
+          <div id="payment-message" class="alert alert-danger mt-20 d-none" role="alert"></div>
+          <div class="mt-20">
+            <button id="submit" type="submit" class="btn btn-lg btn-block btn-primary" disabled>
+              <span id="button-text">Pay $<span class="amount" data-amount="{{amount}}"></span></span>
+              <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="/js/checkout.js"></script>
+{{else}}
+<div class="text-center mt-40">
+  <a href="/" class="btn btn-primary">Back to the shop</a>
+</div>
+{{/if}}

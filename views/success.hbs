@@ -1,0 +1,54 @@
+<main>
+  {{#if paymentIntentId}}
+    {{#if succeeded}}
+    <div class="mt-40 text-center text-success">
+      <h1>
+        <i class="far fa-check-circle"></i>
+        Success!
+      </h1>
+      <p class="text-secondary">Thank you for your order. Your payment was successful.</p>
+    </div>
+    {{/if}}
+    {{#if processing}}
+    <div class="mt-40 text-center text-info">
+      <h1>Payment processing</h1>
+      <p class="text-secondary">Your payment is processing. We'll update you when it completes.</p>
+    </div>
+    {{/if}}
+    {{#if failed}}
+    <div class="mt-40 text-center text-danger">
+      <h1>Payment not completed</h1>
+      <p class="text-secondary">Your payment was not completed (status: {{status}}). Please try again.</p>
+    </div>
+    {{/if}}
+
+    <div class="row justify-content-md-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="card box-shadow mt-40">
+          <div class="card-body">
+            <dl class="row mb-0" id="payment-details">
+              <dt class="col-sm-5">Item</dt>
+              <dd class="col-sm-7">{{title}}</dd>
+              <dt class="col-sm-5">Total charged</dt>
+              <dd class="col-sm-7" id="amount-charged">{{amount}}</dd>
+              <dt class="col-sm-5">Payment Intent ID</dt>
+              <dd class="col-sm-7"><code id="payment-intent-id">{{paymentIntentId}}</code></dd>
+              {{#if email}}
+              <dt class="col-sm-5">Receipt email</dt>
+              <dd class="col-sm-7">{{email}}</dd>
+              {{/if}}
+            </dl>
+            {{#if receiptUrl}}
+            <div class="mt-20 text-center">
+              <a href="{{receiptUrl}}" target="_blank" rel="noopener">View receipt</a>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+  <div class="mt-40 text-center">
+    <a href="/" class="btn btn-outline-primary">Continue shopping</a>
+  </div>
+</main>
